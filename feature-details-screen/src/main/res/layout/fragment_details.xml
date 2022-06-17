@@ -7,9 +7,23 @@
     android:background="@android:color/holo_purple"
     tools:context=".presentation.DetailsFragment">
 
+    <ImageView
+        android:id="@+id/imageViewBack"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="2dp"
+        android:elevation="10dp"
+        android:src="@drawable/ic_back"
+        android:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/nameTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nameTextView"
+        tools:ignore="UseAppTint" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
@@ -21,8 +35,9 @@
 
         <ImageView
             android:id="@+id/heroImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
             tools:src="@drawable/antimage" />
     </androidx.cardview.widget.CardView>
 

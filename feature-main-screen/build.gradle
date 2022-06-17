@@ -63,10 +63,6 @@ dependencies {
     //coil
     implementation 'io.coil-kt:coil:2.1.0'
 
-    //navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
-
     implementation project(path: ':core')
     implementation project(path: ':navigation')
 }

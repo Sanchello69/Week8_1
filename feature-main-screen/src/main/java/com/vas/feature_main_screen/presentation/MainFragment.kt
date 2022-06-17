@@ -14,8 +14,6 @@ import com.vas.core.utils.Result
 import com.vas.feature_main_screen.databinding.FragmentMainBinding
 import com.vas.feature_main_screen.di.MainComponentViewModel
 import com.vas.feature_main_screen.navigation.MainNavCommandProvider
-import com.vas.navigation.NavCommand
-import com.vas.navigation.navigate
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
@@ -76,11 +74,21 @@ class MainFragment : Fragment() {
 
     private fun setupUI() {
         initHeroesRecyclerView()
+        initInfoButton()
     }
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(MainViewModel::class.java)
+    }
+
+    private fun initInfoButton() {
+        binding?.infoImageView?.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()?.replace(
+                mainNavCommandProvider.toAboutApp.container,
+                mainNavCommandProvider.toAboutApp.fragment
+            )?.addToBackStack(null)?.commit()
+        }
     }
 
     private fun initHeroesRecyclerView() {
@@ -91,10 +99,13 @@ class MainFragment : Fragment() {
                 Log.d("click", "$id")
                 val bundle = Bundle()
                 bundle.putString("name", name)
-                navigate(NavCommand(
-                    action = mainNavCommandProvider.toDetails.action,
-                    args = bundle)
-                )
+
+                mainNavCommandProvider.toDetails.fragment.arguments = bundle
+
+                activity?.supportFragmentManager?.beginTransaction()?.replace(
+                    mainNavCommandProvider.toDetails.container,
+                    mainNavCommandProvider.toDetails.fragment
+                )?.addToBackStack(null)?.commit()
             }
         }
     }

@@ -46,6 +46,8 @@ class DetailsFragment : Fragment() {
 
         setupViewModel()
         setupObservers()
+        setupClickBack()
+
     }
 
     override fun onDestroyView() {
@@ -84,8 +86,13 @@ class DetailsFragment : Fragment() {
             rolesTextView.text = "Roles: " + hero.roles.joinToString()
             heroImageView.load(Constants.BASE_URL + hero.urlImg){
                 crossfade(true)
-                placeholder(R.drawable.antimage)
             }
+        }
+    }
+
+    private fun setupClickBack() {
+        binding?.imageViewBack?.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
         }
     }
 
